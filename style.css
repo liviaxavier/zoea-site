@@ -153,16 +153,51 @@ section.zoea-project {
     font-family: 'The Seasons', sans-serif;
 }
 
+section.zoea-project h1{
+    font-size: 8rem;
+}
+
+section.team {
+    padding-bottom: 5em;
+    padding-top: 5em;
+}
+
 
 .team-member {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    justify-content: space-between;
+    min-height: 50vh;
 }
 
 .team-member-name {
     font-family: 'The Seasons', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
+    display: flex;
+    /* justify-content: space-between; */
+    width: 90%;
+    gap: 16px;
+}
+
+.team-member-image {
+    width: 50vw;
+    height: 60vw;
+    max-width: 250px;
+    max-height: 360px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+
+.team-member-info {
+    height: 100%;
+    margin-top: 32px;
+}
+.team-member-name a .fa-brands {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 16px;
 }
 
 
@@ -210,16 +245,28 @@ section.zoea-project {
     section.team {
         flex-direction: column;
         justify-content: unset;
-        padding-top: 5em;
-        padding-bottom: 5em;
         height: auto;
     }
 
+    section.team .team-member {
+        width: 25%;
+        min-width: 200px;
+    }
+
+    section.team .team-member-image {
+        max-width: 200px;
+        max-height: 240px;
+    }
+
+    section.team .team-member p {
+        font-size: 12px;
+    }
+
     section.team .content {
-        display: grid;
-        width: 60%;
-        grid-template-columns: 1fr 1fr;
-        gap: 5em;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        gap: 2em;
         margin-top: 32px;
     }
 
