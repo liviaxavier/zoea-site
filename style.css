@@ -57,26 +57,85 @@ html {
     box-sizing: border-box;
 }
 
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
+    overflow-x: hidden;
 }
 
 h1,
 h2 {
     font-family: 'The Seasons', sans-serif;
     color: var(--primary-color);
+    text-transform: lowercase;
 }
 
 h1 {
     font-size: 3rem;
+    font-weight: 400;
 }
 
 h2 {
     font-size: 24px;
+}
+
+.background-image{
+    /* Full height */
+    height: 100%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* z-index: -1; */
+    position: relative;
+    /* background-image: url("https://images.pexels.com/photos/1249586/pexels-photo-1249586.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"); */
+}
+
+.background-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.background-image.parallax:nth-child(odd)::after {
+    background-color: rgba(23, 66, 81, 0.9);
+}
+.background-image.parallax:nth-child(even)::after {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.zoea-project.background-image {
+    background-image: url("https://images.pexels.com/photos/920161/pexels-photo-920161.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+}
+
+.the-solution.background-image {
+    background-image: url("https://images.pexels.com/photos/2156311/pexels-photo-2156311.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+}
+
+.approach.background-image {
+    background-image: url("https://images.pexels.com/photos/2289409/pexels-photo-2289409.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+}
+
+.sustentability-model.background-image {
+    background-image: url("https://images.pexels.com/photos/19599903/pexels-photo-19599903/free-photo-of-camarao-de-fogo-vermelho-sangue.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+}
+
+.next-steps.background-image {
+    background-image: url("https://images.pexels.com/photos/920163/pexels-photo-920163.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
 }
 
 nav {
@@ -88,13 +147,37 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
     justify-content: space-between;
     align-items: center;
     padding: 16px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
     font-family: 'The Seasons', sans-serif;
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
+
+.sticky-nav {
+    /* transform: translateY(-100%); */
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--primary-color);
+}
+
+.sticky-nav a {
+    color: var(--primary-color);
+}
+
+.sticky-nav a:hover {
+    color: var(--primary-color);
+}
+
+.sticky-nav li {
+    color: var(--primary-color);
+}
+
+.sticky-nav li:hover {
+    color: var(--primary-color);
+}
+
 
 nav ul {
     display: none;
@@ -126,26 +209,32 @@ section {
     padding: 0 32px;
     min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
     color: var(--primary-color);
+    z-index: 100;
 }
 
 section .content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    /* gap: 16px; */
     margin-top: 32px;
 }
 
 section:nth-child(odd) {
     background-color: var(--primary-color);
     color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 
 section:nth-child(odd) h1 {
     color: white;
+}
+
+section:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--primary-color);
 }
 
 section.zoea-project {
@@ -153,7 +242,7 @@ section.zoea-project {
     font-family: 'The Seasons', sans-serif;
 }
 
-section.zoea-project h1{
+section.zoea-project h1 {
     font-size: 8rem;
 }
 
@@ -162,6 +251,9 @@ section.team {
     padding-top: 5em;
 }
 
+section.team .content {
+    gap: 16px;
+}
 
 .team-member {
     display: flex;
@@ -194,6 +286,7 @@ section.team {
     height: 100%;
     margin-top: 32px;
 }
+
 .team-member-name a .fa-brands {
     color: var(--primary-color);
     text-decoration: none;
@@ -205,17 +298,38 @@ section.team {
 
 @media (min-width: 768px) {
     h1 {
-        font-size: 5rem;
+        font-size: 6rem;
     }
-
     nav ul {
         display: flex;
     }
+
+    nav.aside {
+        height: 100vh;
+        width: 150px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    nav.aside ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    nav.aside #logo {
+        width: 100px;
+        margin-bottom: 32px;
+    }
+    nav.aside ~ .container section {
+        padding-left: calc(32px + 150px);
+    }
+
 
     section {
         flex-direction: row;
         justify-content: space-between;
         padding: 32px;
+        align-items: center;
+        /* padding-left: calc(32px + 150px); */
     }
 
     section.zoea-project {
@@ -226,14 +340,21 @@ section.team {
     }
 
     section.zoea-project h1 {
-        font-size: 10rem;
+        font-size: 9rem;
         width: 100%;
+        text-align: center;
+    }
+
+    section.zoea-project p {
+        font-size: 2rem;
+        width: 300px;
+        text-align: center;
     }
 
 
 
     section h1 {
-        text-align: center;
+        font-size: 6rem;
         width: 50%;
     }
 
